@@ -27,9 +27,8 @@ const getInfo = async () => {
 const CreatePost = () => {
   return (
     <Authenticator>
-      <div>
-        <h1>Create A Post</h1>
-        <h3>Fill in the fields below</h3>
+      <div className="create">
+        <h2 className="create__header">Create A Post</h2>
         <button onClick={getInfo}>Get user info</button>
       </div>
     </Authenticator>
