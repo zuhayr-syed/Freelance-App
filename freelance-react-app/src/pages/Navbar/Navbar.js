@@ -1,20 +1,20 @@
-import "../App.css";
+import "./Navbar.css";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   NavLink,
 } from "react-router-dom";
-import Home from "./Home";
-import Feed from "./Feed";
-import CreatePost from "./CreatePost";
-import SignIn from "./SignIn";
+import Home from "../Home";
+import Feed from "../Feed";
+import CreatePost from "../CreatePost";
+import SignIn from "../SignIn";
 import { Auth, Hub } from "aws-amplify";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setStatus } from "../redux/slices/signedInSlice";
+import { setStatus } from "../../redux/slices/signedInSlice";
 import { redirect, Navigate } from "react-router-dom";
-import { setPage, setValid } from "../redux/slices/redirectSlice";
+import { setPage, setValid } from "../../redux/slices/redirectSlice";
 
 function Navbar() {
   const signedIn = useSelector((state) => state.signedIn.logged);
