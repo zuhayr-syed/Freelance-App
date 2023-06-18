@@ -4,7 +4,7 @@ import { Auth } from "aws-amplify";
 import { useEffect } from "react";
 import { redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setStatus } from "../redux/slices/signedInSlice";
+import { setStatus } from "../../redux/slices/signedInSlice";
 
 const getInfo = async () => {
   // let user = await Auth.currentAuthenticatedUser();
