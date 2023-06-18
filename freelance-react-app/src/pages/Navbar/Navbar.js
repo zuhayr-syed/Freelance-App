@@ -5,9 +5,9 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import Home from "../Home";
-import Feed from "../Feed";
-import CreatePost from "../CreatePost";
+import Home from "../Home/Home";
+import Feed from "../Feed/Feed";
+import CreatePost from "../CreatePost/CreatePost";
 import SignIn from "../SignIn";
 import { Auth, Hub } from "aws-amplify";
 import { useEffect } from "react";
@@ -15,6 +15,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setStatus } from "../../redux/slices/signedInSlice";
 import { redirect, Navigate } from "react-router-dom";
 import { setPage, setValid } from "../../redux/slices/redirectSlice";
+import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+import Button from "@mui/material/Button";
 
 function Navbar() {
   const signedIn = useSelector((state) => state.signedIn.logged);
@@ -57,42 +59,60 @@ function Navbar() {
   };
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <div className="navBar">
-          <NavLink to="/" className="navText">
-            <button
+          <ConnectWithoutContactIcon className="sidebar__Icon" />
+          <h2 className="greetingText">Hello _____________!</h2>
+          <NavLink to="/">
+            <Button
+              className="sidebarOption"
+              fullWidth
               onClick={() => {
                 dispatch(setPage(""));
               }}
             >
               About
-            </button>
+            </Button>
           </NavLink>
-          <NavLink to="/feed" className="navText">
-            <button
+          <NavLink to="/feed">
+            <Button
+              className="sidebarOption"
+              fullWidth
               onClick={() => {
                 dispatch(setPage("feed"));
               }}
             >
               Feed
-            </button>
+            </Button>
           </NavLink>
-          <NavLink to="/create-post" className="navText">
-            <button
-              onClick={() => {
-                dispatch(setPage("create-post"));
-              }}
-            >
-              Create a Post
-            </button>
-          </NavLink>
-          {signedIn ? (
-            <button onClick={signOut}>Sign Out</button>
-          ) : (
-            <NavLink to="/sign-in" className="navText">
-              <button onClick={signIn}>Sign In</button>
+          <div className="sidebarButton">
+            <NavLink to="/create-post">
+              <Button
+                className="createPost"
+                fullWidth
+                onClick={() => {
+                  dispatch(setPage("create-post"));
+                }}
+              >
+                Create a Post
+              </Button>
             </NavLink>
+          </div>
+          {signedIn ? (
+            <div className="sidebarLogin">
+              <Button className="loginButton" fullWidth onClick={signOut}>
+                Sign Out
+              </Button>
+            </div>
+          ) : (
+            <div className="sidebarLogin">
+              <NavLink to="/sign-in">
+                <Button className="loginButton" fullWidth onClick={signIn}>
+                  Sign In
+                </Button>
+              </NavLink>
+            </div>
           )}
           {validRedirect ? <Navigate to={`/${pageRedirect}`} /> : null}
         </div>
