@@ -1,31 +1,19 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { Auth } from "aws-amplify";
 import { useEffect } from "react";
-import { redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setStatus } from "../../redux/slices/signedInSlice";
+import { setValid } from "../../redux/slices/redirectSlice";
 import TextField from "@mui/material/TextField";
 
-const getInfo = async () => {
-  // let user = await Auth.currentAuthenticatedUser();
-  // console.log("attributes:", user.attributes);
-  //
-  // if (user.attributes.given_name) {
-  //   console.log("you already have the name: ", user.attributes.given_name);
-  // } else {
-  //   console.log("YOU DO NOT HAVE A NAME SET YET");
-  // }
-  //
-  // const result = await Auth.updateUserAttributes(user, {
-  //   given_name: "Test",
-  //   family_name: "123",
-  // });
-  // console.log(result);
-  // console.log("attributes:", user.attributes);
-};
+const SignIn = () => {
+  const validRedirect = useSelector((state) => state.redirect.valid);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (validRedirect) {
+      dispatch(setValid(0));
+    }
+  }, [validRedirect]);
 
-const CreatePost = () => {
   return (
     <Authenticator
       // Default to Sign Up screen
@@ -61,19 +49,8 @@ const CreatePost = () => {
           },
         },
       }}
-    >
-      {/* {({ signOut, user }) => ( */}
-      {/* // <main>
-        //   <h1>Hello {user.username}</h1>
-        //   <button onClick={signOut}>Sign out</button>
-        // </main> */}
-      <div className="create">
-        <h2 className="create__header">Create A Post</h2>
-        <button onClick={getInfo}>Get user info</button>
-      </div>
-      {/* )} */}
-    </Authenticator>
+    />
   );
 };
 
-export default CreatePost;
+export default SignIn;

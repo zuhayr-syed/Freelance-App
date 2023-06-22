@@ -8,7 +8,7 @@ import {
 import Home from "../Home/Home";
 import Feed from "../Feed/Feed";
 import CreatePost from "../CreatePost/CreatePost";
-import SignIn from "../SignIn";
+import SignIn from "../SignIn/SignIn";
 import { Auth, Hub } from "aws-amplify";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -63,7 +63,7 @@ function Navbar() {
       <Router>
         <div className="navBar">
           <ConnectWithoutContactIcon className="sidebar__Icon" />
-          <h2 className="greetingText">Hello _____________!</h2>
+          <h2 className="greetingText">Hello {}!</h2>
           <NavLink to="/">
             <Button
               className="sidebarOption"
