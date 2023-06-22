@@ -61,6 +61,22 @@
   bottom: 30px; */
 }
 
+.deleteUser {
+  background-color: rgb(206, 104, 81) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  border-radius: 30px !important;
+  height: 35px !important;
+  /* margin-top: calc(100vh - 450px) !important; */
+  margin-top: 15px;
+  /* margin-bottom: 100% !important; */
+  /* position: fixed;
+  width: 25%;
+  bottom: 30px; */
+}
+
 .createPost {
   padding-top: -50px;
   color: white !important;
