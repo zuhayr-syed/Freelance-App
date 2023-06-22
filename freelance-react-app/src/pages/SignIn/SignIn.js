@@ -4,10 +4,14 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setValid } from "../../redux/slices/redirectSlice";
 import TextField from "@mui/material/TextField";
+import { setEmail, setFirst, setLast } from "../../redux/slices/userInfoSlice";
 
 const SignIn = () => {
   const validRedirect = useSelector((state) => state.redirect.valid);
+  const first = useSelector((state) => state.userInfo.first);
+  const last = useSelector((state) => state.userInfo.last);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (validRedirect) {
       dispatch(setValid(0));
@@ -34,7 +38,9 @@ const SignIn = () => {
                   placeholder="Enter your first name"
                   name="firstname"
                   type="text"
-                  required="true"
+                  required
+                  value={first}
+                  onChange={(e) => dispatch(setFirst(e.target.value))}
                 />
                 <TextField
                   label="Last Name"
@@ -42,7 +48,9 @@ const SignIn = () => {
                   placeholder="Enter your last name"
                   name="lastname"
                   type="text"
-                  required="true"
+                  required
+                  value={last}
+                  onChange={(e) => dispatch(setLast(e.target.value))}
                 />
               </>
             );

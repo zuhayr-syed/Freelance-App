@@ -1,11 +1,12 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { Auth } from "aws-amplify";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setStatus } from "../../redux/slices/signedInSlice";
 import TextField from "@mui/material/TextField";
+import { setEmail, setFirst, setLast } from "../../redux/slices/userInfoSlice";
 
 const getInfo = async () => {
   // let user = await Auth.currentAuthenticatedUser();
@@ -26,6 +27,13 @@ const getInfo = async () => {
 };
 
 const CreatePost = () => {
+  const first = useSelector((state) => state.userInfo.first);
+  const last = useSelector((state) => state.userInfo.last);
+  const dispatch = useDispatch();
+
+  // console.log("first: ", first);
+  // console.log("last: ", last);
+
   return (
     <Authenticator
       // Default to Sign Up screen
@@ -46,7 +54,9 @@ const CreatePost = () => {
                   placeholder="Enter your first name"
                   name="firstname"
                   type="text"
-                  required="true"
+                  required
+                  value={first}
+                  onChange={(e) => dispatch(setFirst(e.target.value))}
                 />
                 <TextField
                   label="Last Name"
@@ -54,7 +64,9 @@ const CreatePost = () => {
                   placeholder="Enter your last name"
                   name="lastname"
                   type="text"
-                  required="true"
+                  required
+                  value={last}
+                  onChange={(e) => dispatch(setLast(e.target.value))}
                 />
               </>
             );
