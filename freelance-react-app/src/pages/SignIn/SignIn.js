@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setValid } from "../../redux/slices/redirectSlice";
 import TextField from "@mui/material/TextField";
-import { setEmail, setFirst, setLast } from "../../redux/slices/userInfoSlice";
+import { setFirst, setLast } from "../../redux/slices/userInfoSlice";
 
 const SignIn = () => {
   const validRedirect = useSelector((state) => state.redirect.valid);

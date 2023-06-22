@@ -10,7 +10,7 @@ import Feed from "../Feed/Feed";
 import CreatePost from "../CreatePost/CreatePost";
 import SignIn from "../SignIn/SignIn";
 import { Auth, Hub } from "aws-amplify";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setStatus } from "../../redux/slices/signedInSlice";
 import { redirect, Navigate } from "react-router-dom";
@@ -28,9 +28,6 @@ function Navbar() {
   const firstName = useSelector((state) => state.userInfo.first);
   const last = useSelector((state) => state.userInfo.last);
   const email = useSelector((state) => state.userInfo.email);
-  // console.log("first: ", firstName);
-  // console.log("last: ", last);
-  // console.log("email: ", email);
 
   useEffect(() => {
     authListener();

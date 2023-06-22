@@ -1,38 +1,13 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { Auth } from "aws-amplify";
-import { useEffect, useState } from "react";
-import { redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setStatus } from "../../redux/slices/signedInSlice";
 import TextField from "@mui/material/TextField";
-import { setEmail, setFirst, setLast } from "../../redux/slices/userInfoSlice";
-
-const getInfo = async () => {
-  // let user = await Auth.currentAuthenticatedUser();
-  // console.log("attributes:", user.attributes);
-  //
-  // if (user.attributes.given_name) {
-  //   console.log("you already have the name: ", user.attributes.given_name);
-  // } else {
-  //   console.log("YOU DO NOT HAVE A NAME SET YET");
-  // }
-  //
-  // const result = await Auth.updateUserAttributes(user, {
-  //   given_name: "Test",
-  //   family_name: "123",
-  // });
-  // console.log(result);
-  // console.log("attributes:", user.attributes);
-};
+import { setFirst, setLast } from "../../redux/slices/userInfoSlice";
 
 const CreatePost = () => {
   const first = useSelector((state) => state.userInfo.first);
   const last = useSelector((state) => state.userInfo.last);
   const dispatch = useDispatch();
-
-  // console.log("first: ", first);
-  // console.log("last: ", last);
 
   return (
     <Authenticator
@@ -81,7 +56,6 @@ const CreatePost = () => {
         // </main> */}
       <div className="create">
         <h2 className="create__header">Create A Post</h2>
-        <button onClick={getInfo}>Get user info</button>
       </div>
       {/* )} */}
     </Authenticator>
