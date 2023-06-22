@@ -18,6 +18,7 @@ import { setPage, setValid } from "../../redux/slices/redirectSlice";
 import { setEmail, setFirst, setLast } from "../../redux/slices/userInfoSlice";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import Button from "@mui/material/Button";
+import Widgets from "../Widget/Widget";
 
 function Navbar() {
   const signedIn = useSelector((state) => state.signedIn.logged);
@@ -185,6 +186,9 @@ function Navbar() {
           <Route path="/sign-in" element={<SignIn />}></Route>
         </Routes>
       </Router>
+      {window.location.href.slice(22) === "feed" && (
+        <Widgets className="widget" />
+      )}
     </div>
   );
 }
