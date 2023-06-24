@@ -55,7 +55,12 @@ const CreatePost = () => {
         //   <button onClick={signOut}>Sign out</button>
         // </main> */}
       <div className="create">
-        <h2 className="create__header">Create A Post</h2>
+        <h2
+          className="create__header"
+          style={{ paddingLeft: 30, paddingTop: 30 }}
+        >
+          Create A Post
+        </h2>
       </div>
       {/* )} */}
     </Authenticator>
