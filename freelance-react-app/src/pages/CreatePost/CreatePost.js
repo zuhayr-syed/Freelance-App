@@ -1,54 +1,29 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { useSelector, useDispatch } from "react-redux";
-import TextField from "@mui/material/TextField";
-import { setFirst, setLast } from "../../redux/slices/userInfoSlice";
+
+const formFields = {
+  signUp: {
+    email: {
+      order: 1,
+    },
+    name: {
+      order: 2,
+    },
+    family_name: {
+      order: 3,
+    },
+    password: {
+      order: 4,
+    },
+    confirm_password: {
+      order: 5,
+    },
+  },
+};
 
 const CreatePost = () => {
-  const first = useSelector((state) => state.userInfo.first);
-  const last = useSelector((state) => state.userInfo.last);
-  const dispatch = useDispatch();
-
   return (
-    <Authenticator
-      // Default to Sign Up screen
-      initialState="signUp"
-      // Customize `Authenticator.SignUp.FormFields`
-      components={{
-        SignUp: {
-          FormFields() {
-            return (
-              <>
-                {/* Re-use default `Authenticator.SignUp.FormFields` */}
-                <Authenticator.SignUp.FormFields />
-
-                {/* Append & require Terms & Conditions field to sign up  */}
-                <TextField
-                  label="First Name"
-                  id="1"
-                  placeholder="Enter your first name"
-                  name="firstname"
-                  type="text"
-                  required
-                  value={first}
-                  onChange={(e) => dispatch(setFirst(e.target.value))}
-                />
-                <TextField
-                  label="Last Name"
-                  id="2"
-                  placeholder="Enter your last name"
-                  name="lastname"
-                  type="text"
-                  required
-                  value={last}
-                  onChange={(e) => dispatch(setLast(e.target.value))}
-                />
-              </>
-            );
-          },
-        },
-      }}
-    >
+    <Authenticator formFields={formFields}>
       {/* {({ signOut, user }) => ( */}
       {/* // <main>
         //   <h1>Hello {user.username}</h1>

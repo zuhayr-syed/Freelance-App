@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setStatus } from "../../redux/slices/signedInSlice";
 import { redirect, Navigate } from "react-router-dom";
 import { setPage, setValid } from "../../redux/slices/redirectSlice";
-import { setEmail, setFirst, setLast } from "../../redux/slices/userInfoSlice";
+import { setEmail, setFullName } from "../../redux/slices/userInfoSlice";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import Button from "@mui/material/Button";
 import Widgets from "../Widget/Widget";
@@ -26,8 +26,7 @@ function Navbar() {
   const validRedirect = useSelector((state) => state.redirect.valid);
   const dispatch = useDispatch();
 
-  const firstName = useSelector((state) => state.userInfo.first);
-  const last = useSelector((state) => state.userInfo.last);
+  const fullName = useSelector((state) => state.userInfo.fullName);
   const email = useSelector((state) => state.userInfo.email);
 
   useEffect(() => {
@@ -40,26 +39,20 @@ function Navbar() {
   }, [email]);
 
   const setNames = async () => {
-    let user = await Auth.currentAuthenticatedUser();
-    if (!user.attributes.given_name) {
-      const result = await Auth.updateUserAttributes(user, {
-        given_name: firstName,
-        family_name: last,
-      });
-      console.log(result);
-    }
-    if (!firstName) {
+    if (!fullName) {
       let user = await Auth.currentAuthenticatedUser();
-      dispatch(setFirst(user.attributes.given_name));
-      dispatch(setLast(user.attributes.family_name));
+      dispatch(setFullName(user.attributes.name));
     }
   };
 
   const getUserInfo = async () => {
     let user = await Auth.currentAuthenticatedUser();
-    console.log("user email: ", user.attributes.email);
+    console.log("user att: ", user.attributes);
     if (user.attributes.email) {
       dispatch(setEmail(user.attributes.email));
+    }
+    if (user.attributes.name) {
+      dispatch(setFullName(user.attributes.name));
     }
   };
 
@@ -89,8 +82,7 @@ function Navbar() {
 
   const signOut = async () => {
     try {
-      dispatch(setFirst(""));
-      dispatch(setLast(""));
+      dispatch(setFullName(""));
       dispatch(setEmail(""));
       await Auth.signOut();
       window.location.reload();
@@ -101,8 +93,7 @@ function Navbar() {
 
   async function deleteUser() {
     try {
-      dispatch(setFirst(""));
-      dispatch(setLast(""));
+      dispatch(setFullName(""));
       dispatch(setEmail(""));
       const result = await Auth.deleteUser();
       window.location.reload();
@@ -118,7 +109,7 @@ function Navbar() {
         <div className="navBar">
           <ConnectWithoutContactIcon className="sidebar__Icon" />
           <h2 className="greetingText">
-            Hello{email ? " " + firstName : null}!
+            Hello{email ? " " + fullName : null}!
           </h2>
           <NavLink to="/">
             <Button
