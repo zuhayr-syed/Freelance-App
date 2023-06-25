@@ -1,5 +1,9 @@
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import PostForm from "./PostForm";
+import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 const formFields = {
   signUp: {
@@ -30,12 +34,17 @@ const CreatePost = () => {
         //   <button onClick={signOut}>Sign out</button>
         // </main> */}
       <div className="create">
-        <h2
-          className="create__header"
-          style={{ paddingLeft: 30, paddingTop: 30 }}
-        >
-          Create A Post
-        </h2>
+        <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
+          <Paper
+            variant="outlined"
+            sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          >
+            <Typography component="h1" variant="h4" align="center">
+              Create A Post!
+            </Typography>
+            <PostForm />
+          </Paper>
+        </Container>
       </div>
       {/* )} */}
     </Authenticator>

@@ -15,17 +15,3 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
-.create__header {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 100;
-  border: 1px solid var(--twitter-background);
-  padding: 15px 20px;
-}
-
-.create__header > h2 {
-  font-size: 20px;
-  font-weight: 800;
-}
