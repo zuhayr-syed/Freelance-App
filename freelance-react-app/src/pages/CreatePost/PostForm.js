@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -30,6 +31,24 @@ export default function PostForm() {
 
   const [payErr, setPayErr] = useState(false);
   const [phoneErr, setPhoneErr] = useState(false);
+  const [fieldsEmpty, setfieldsEmpty] = useState(true);
+
+  useEffect(() => {
+    if (
+      title &&
+      desc &&
+      spec &&
+      start &&
+      due &&
+      payType &&
+      payAmount &&
+      email
+    ) {
+      setfieldsEmpty(false);
+    } else {
+      setfieldsEmpty(true);
+    }
+  }, [title, desc, spec, start, due, payType, payAmount, email]);
 
   useEffect(() => {
     let isNum = /^\d+$/.test(payAmount);
@@ -49,16 +68,30 @@ export default function PostForm() {
     }
   }, [phone]);
 
-  console.log("title: ", title);
-  console.log("desc: ", desc);
-  console.log("spec: ", spec);
-  console.log("req: ", req);
-  console.log("start: ", start);
-  console.log("due: ", due);
-  console.log("payType: ", payType);
-  console.log("payAmount: ", payAmount);
-  console.log("email: ", email);
-  console.log("phone: ", phone);
+  const submitForm = async () => {
+    console.log("title: ", title);
+    console.log("desc: ", desc);
+    console.log("spec: ", spec);
+    console.log("req: ", req);
+    console.log("start: ", start);
+    console.log("due: ", due);
+    console.log("payType: ", payType);
+    console.log("payAmount: ", payAmount);
+    console.log("email: ", email);
+    console.log("phone: ", phone);
+    setTitle("");
+    setDesc("");
+    setSpec("");
+    setReq("");
+    setStart(null);
+    setDue(null);
+    setPayType("");
+    setPayAmount("");
+    setEmail("");
+    setPhone("");
+    setPayErr("");
+    setPhoneErr("");
+  };
 
   return (
     <React.Fragment>
@@ -199,6 +232,15 @@ export default function PostForm() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Button
+            variant="contained"
+            onClick={submitForm}
+            disabled={payErr | phoneErr | fieldsEmpty}
+          >
+            Create Post
+          </Button>
         </Grid>
       </Grid>
     </React.Fragment>
