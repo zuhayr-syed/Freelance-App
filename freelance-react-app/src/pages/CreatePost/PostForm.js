@@ -13,6 +13,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function PostForm() {
   const [title, setTitle] = useState("");
@@ -32,6 +33,9 @@ export default function PostForm() {
   const [payErr, setPayErr] = useState(false);
   const [phoneErr, setPhoneErr] = useState(false);
   const [fieldsEmpty, setfieldsEmpty] = useState(true);
+
+  const fullName = useSelector((state) => state.userInfo.fullName);
+  const perEmail = useSelector((state) => state.userInfo.email);
 
   useEffect(() => {
     if (
@@ -79,6 +83,8 @@ export default function PostForm() {
     console.log("payAmount: ", payAmount);
     console.log("email: ", email);
     console.log("phone: ", phone);
+    console.log("fullName: ", fullName);
+    console.log("perEmail: ", perEmail);
     setTitle("");
     setDesc("");
     setSpec("");
