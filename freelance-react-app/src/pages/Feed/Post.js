@@ -84,22 +84,18 @@ const Post = forwardRef(
             <div className="post__headerDescription">
               <h4>
                 Pay Type: <span className="post__headerSpecial">{payType}</span>
-              </h4>
-            </div>
-            <div className="post__headerDescription">
-              <h4>
-                Amount: <span className="post__headerSpecial">{amount}</span>
+                <span className="post__spacing">
+                  Amount: <span className="post__headerSpecial">{amount}</span>
+                </span>
               </h4>
             </div>
             <div className="post__headerDescription">
               <h4>
                 Email: <span className="post__headerSpecial">{email}</span>
-              </h4>
-            </div>
-            <div className="post__headerDescription">
-              <h4>
-                Phone Number:{" "}
-                <span className="post__headerSpecial">{phoneNum}</span>
+                <span className="post__spacing">
+                  Phone Number:{" "}
+                  <span className="post__headerSpecial">{phoneNum}</span>
+                </span>
               </h4>
             </div>
           </div>

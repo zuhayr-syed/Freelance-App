@@ -41,8 +41,13 @@
   font-weight: 600;
   font-size: 12px;
   color: gray;
+  padding-left: 5px;
 }
 
 .post__avatar {
   padding: 20px;
+}
+
+.post__spacing {
+  padding-left: 40px;
 }
