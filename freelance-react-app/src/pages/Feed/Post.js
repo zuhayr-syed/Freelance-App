@@ -75,11 +75,10 @@ const Post = forwardRef(
               <h4>
                 Start Date:{" "}
                 <span className="post__headerSpecial">{startDate}</span>
-              </h4>
-            </div>
-            <div className="post__headerDescription">
-              <h4>
-                End Date: <span className="post__headerSpecial">{endDate}</span>
+                <span className="post__spacing">
+                  End Date:{" "}
+                  <span className="post__headerSpecial">{endDate}</span>
+                </span>
               </h4>
             </div>
             <div className="post__headerDescription">
