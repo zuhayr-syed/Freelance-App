@@ -5,7 +5,6 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import Home from "../Home/Home";
 import Feed from "../Feed/Feed";
 import CreatePost from "../CreatePost/CreatePost";
 import SignIn from "../SignIn/SignIn";
@@ -170,7 +169,6 @@ function Navbar() {
           {validRedirect ? <Navigate to={`/${pageRedirect}`} /> : null}
         </div>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
           <Route path="/feed" element={<Feed />}></Route>
           <Route path="/create-post" element={<CreatePost />}></Route>
           <Route path="/sign-in" element={<SignIn />}></Route>
