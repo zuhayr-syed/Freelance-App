@@ -47,7 +47,6 @@ function Navbar() {
 
   const getUserInfo = async () => {
     let user = await Auth.currentAuthenticatedUser();
-    console.log("user att: ", user.attributes);
     if (user.attributes.email) {
       dispatch(setEmail(user.attributes.email));
     }
