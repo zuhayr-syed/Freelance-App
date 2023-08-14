@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "auth": {
+      "freelancereactappc7ce02e4": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "freelancedb": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
