@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API } from "aws-amplify";
 import Post from "./Post";
 import "./Feed.css";
 
@@ -6,42 +7,13 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    setPosts([
-      {
-        postTitle: "New Post",
-        projDesc: "This is the description",
-        projSpec: "This is the specifications",
-        specReq: "These are my requests",
-        startDate: "08/09/2023",
-        endDate: "08/20/2023",
-        payType: "hourly",
-        amount: "2300",
-        email: "email123@gmail.com",
-        phoneNum: "9059051234",
-        fullName: "Zuhayr Syed",
-        perEmail: "zuhayr.syed@uwaterloo.ca",
-      },
-      {
-        postTitle: "Another Post",
-        projDesc:
-          "description description description description description description description",
-        projSpec: "specifications specifications specifications specifications",
-        specReq: "requests requests requests requests requests",
-        startDate: "08/09/2023",
-        endDate: "08/20/2023",
-        payType: "hourly",
-        amount: "2300",
-        email: "email123@gmail.com",
-        phoneNum: "9059051234",
-        fullName: "Zuhayr Syed",
-        perEmail: "zuhayr.syed@uwaterloo.ca",
-      },
-    ]);
-  }, []);
+    const getData = async () => {
+      const data = await API.get("freelanceapi", "/post");
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
+      setPosts(data.data.Items);
+    };
+    getData();
+  }, []);
 
   return (
     <div className="feed">
@@ -51,18 +23,18 @@ const Feed = () => {
 
       {posts.map((post) => (
         <Post
-          postTitle={post.postTitle}
-          projDesc={post.projDesc}
-          projSpec={post.projSpec}
-          specReq={post.specReq}
-          startDate={post.startDate}
-          endDate={post.endDate}
-          payType={post.payType}
-          amount={post.amount}
-          email={post.email}
-          phoneNum={post.phoneNum}
-          fullName={post.fullName}
-          perEmail={post.perEmail}
+          postTitle={post.postTitle.S}
+          projDesc={post.projDesc.S}
+          projSpec={post.projSpec.S}
+          specReq={post.specReq.S}
+          startDate={post.startDate.S}
+          endDate={post.endDate.S}
+          payType={post.payType.S}
+          amount={post.amount.S}
+          email={post.email.S}
+          phoneNum={post.phoneNum.S}
+          fullName={post.fullName.S}
+          perEmail={post.perEmail.S}
         />
       ))}
     </div>
