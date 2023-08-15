@@ -10,7 +10,7 @@ const Feed = () => {
     const getData = async () => {
       const data = await API.get("freelanceapi", "/post");
 
-      setPosts(data.data.Items);
+      setPosts(data.data.Items.reverse());
     };
     getData();
   }, []);
