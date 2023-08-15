@@ -14,6 +14,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { API } from "aws-amplify";
 
 export default function PostForm() {
   const [title, setTitle] = useState("");
@@ -73,18 +74,27 @@ export default function PostForm() {
   }, [phone]);
 
   const submitForm = async () => {
-    console.log("title: ", title);
-    console.log("desc: ", desc);
-    console.log("spec: ", spec);
-    console.log("req: ", req);
-    console.log("start: ", start);
-    console.log("due: ", due);
-    console.log("payType: ", payType);
-    console.log("payAmount: ", payAmount);
-    console.log("email: ", email);
-    console.log("phone: ", phone);
-    console.log("fullName: ", fullName);
-    console.log("perEmail: ", perEmail);
+    const postData = async () => {
+      const data = await API.post("freelanceapi", "/post", {
+        body: {
+          postTitle: title,
+          projDesc: desc,
+          projSpec: spec,
+          specReq: req,
+          startDate: start,
+          endDate: due,
+          payType: payType,
+          amount: payAmount,
+          email: email,
+          phoneNum: phone,
+          fullName: fullName,
+          perEmail: perEmail,
+        },
+      });
+      console.log(data);
+    };
+    postData();
+
     setTitle("");
     setDesc("");
     setSpec("");
