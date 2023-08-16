@@ -1,2 +1,2 @@
 # Freelance-App
-React, Python, AWS Amplify, DynamoDB
+AWS Amplify, Python, Flask, React.js, DynamoDB
